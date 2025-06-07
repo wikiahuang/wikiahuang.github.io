@@ -25,15 +25,17 @@ Powered by Hydejack v9.2.1 <https://hydejack.com/>
 
 
 
+  <meta name="robots" content="noindex">
+
 
 
   
     
 
-<title>黄尉琪 | I dream of a world where machines perceive and understand things like humans.</title>
-<meta name="description" content="
+<title>Build | 黄尉琪</title>
+<meta name="description" content="This chapters shows how to prepare your Hydejack site for a production build and deployment on 3rd party hosting providers.
 ">
-<link rel="canonical" href="http://localhost:4001/">
+<link rel="canonical" href="http://localhost:4001/docs/build/">
 
   
 
@@ -63,7 +65,7 @@ Powered by Hydejack v9.2.1 <https://hydejack.com/>
 <meta name="generator" content="Hydejack v9.2.1" />
 
 
-<link rel="alternate" href="http://localhost:4001/" hreflang="en">
+<link rel="alternate" href="http://localhost:4001/docs/build/" hreflang="en">
 
 
 
@@ -217,46 +219,104 @@ html{--accent-color: rgb(79,177,186);--accent-color-faded: rgba(79, 177, 186, 0.
   <nav id="breadcrumbs" class="screen-only"><ul>
   
   
+    <li><a href="/">home</a></li>
+    
+      <li>
+        
+          <span>/</span>
+          
+          
+          <a href="/docs/">docs</a>
+        
+      </li>
+    
+      <li>
+        
+          <span>/</span>
+          <span>build</span>
+        
+      </li>
+    
+  
 </ul></nav>
   <article class="page mb6" role="article">
   <header>
-    <h1 class="page-title">Hi, Weiqi here!</h1>
+    <h1 class="page-title">Build</h1>
     
 
 
 
-  <div class="hr pb0"></div>
+  
+    <div class="hr pb0"></div>
+  
 
 
   </header>
 
-  <h2 id="about-me">About Me</h2>
-<p>I’m a first-year CS PhD at Beijing Institute of Technology, lucky to be advised by Prof.<a href="https://pie-lab.cn/"> Wei Liang</a>. Before that, I received my B.E. from School of Software, Dalian University of Technology.</p>
+  <p>This chapters shows how to prepare your Hydejack site for a production build and deployment on 3rd party hosting providers.</p>
 
-<p>My research focuses on embodied navigation. I’m passionate about developing algorithms that give robots a human-like understanding of 3D space for intelligent navigation. I’m also fascinated by how the human brain builds and recalls cognitive maps to form our sense of space — a mystery I hope science will one day uncover.</p>
-<h2 id="research">Research</h2>
-<div style="display: flex;align-items: flex-end; gap: 20px;">
-  <div style="flex: 1;">
-    <img src="/assets/img/teaser.png" alt="My photo" style="max-width: 100%; height: auto;" />
-  </div>
-  <div style="flex: 2;">
-    <h4>FloNa: Floor Plan Guided Embodied Visual Navigation</h4>
-    <!-- Paper authors -->
-    <p><a href="https://gauleejx.github.io/" target="_blank">Jiaxin Li</a>, <strong>Weiqi Huang</strong>,<a href="https://silvester.wang/" target="_blank"> Zan Wang</a>,<a href="https://liangwei-bit.github.io/web/" target="_blank"> Wei Liang<sup>✉️</sup></a>,Huijun Di<sup>✉️</sup>,Feng Liu</p>
-    <p style="margin: 1px 0;"><em>AAAI Conference on Artificial Intelligence (AAAI), 2025,  </em><span style="color: red;">Oral</span></p>
-    <p style="margin: 1px 0;">
-  <a href="https://arxiv.org/abs/2412.18335" target="_blank" style="margin-right: 10px; text-decoration: none;">
-    📄 <span style="color: #66b3ff;">arXiv</span>
-  </a>
-  <a href="https://github.com/GauleeJX/flodiff" target="_blank" style="margin-right: 10px; text-decoration: none;">
-    💻 <span style="color: #66b3ff;">code</span>
-  </a>
-  <a href="https://gauleejx.github.io/flona/" target="_blank" style="text-decoration: none;">
-    🌐 <span style="color: #66b3ff;">project</span>
-  </a>
-</p>
-  </div>
-</div>
+<ol id="markdown-toc">
+  <li><a href="#building-locally" id="markdown-toc-building-locally">Building locally</a></li>
+  <li><a href="#building-locally-with-latent-semantic-analysis" id="markdown-toc-building-locally-with-latent-semantic-analysis">Building locally with latent semantic analysis</a></li>
+  <li><a href="#github-pages" id="markdown-toc-github-pages">GitHub Pages</a></li>
+</ol>
+
+<h2 id="building-locally">Building locally</h2>
+<p>When building Hydejack it is important to set the environment variable <code class="language-plaintext highlighter-rouge">JEKYLL_ENV</code> to <code class="language-plaintext highlighter-rouge">production</code>.
+Otherwise the output will not be minified. Building itself happens via Jekyll’s <code class="language-plaintext highlighter-rouge">build</code> command.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ JEKYLL_ENV</span><span class="o">=</span>production bundle <span class="nb">exec </span>jekyll build
+</code></pre></div></div>
+
+<p>This will generate the finished static files in <code class="language-plaintext highlighter-rouge">_site</code>,
+which can be deployed using the methods outlined in the <a href="https://jekyllrb.com/docs/deployment-methods/">Jekyll Documentation</a>.</p>
+
+<h2 id="building-locally-with-latent-semantic-analysis">Building locally with latent semantic analysis</h2>
+<p>By default, related posts are simply the most recent posts.
+Hydejack modifies this a bit, by showing the most recent posts of the same category or tag.
+However, the results are still pretty “unrelated”.
+To provide better results, Jekyll supports <a href="https://en.wikipedia.org/wiki/Latent_semantic_analysis">latent semantic analysis</a> via <a href="http://www.classifier-reborn.com/"><code class="language-plaintext highlighter-rouge">classifier-reborn</code></a>’s
+<a href="http://www.classifier-reborn.com/lsi">Latent Semantic Indexer</a></p>
+
+<p>To use the <abbr title="Latent Semantic Indexer">LSI</abbr>, you first have to disable Hydejack’s default behavior,
+by setting <code class="language-plaintext highlighter-rouge">use_lsi: true</code> under the <code class="language-plaintext highlighter-rouge">hydejack</code> key in your config file.</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># file: `_config.yml`</span>
+<span class="na">hydejack</span><span class="pi">:</span>
+  <span class="na">use_lsi</span><span class="pi">:</span> <span class="kc">true</span>
+</code></pre></div></div>
+
+<p>Then, you have to run <code class="language-plaintext highlighter-rouge">jekyll build</code> with the <code class="language-plaintext highlighter-rouge">--lsi</code> flag:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ JEKYLL_ENV</span><span class="o">=</span>production bundle <span class="nb">exec </span>jekyll build <span class="nt">--lsi</span>
+</code></pre></div></div>
+
+<p>Note that this may take a long time.
+Once it is finished, the generated static files will be located in the <code class="language-plaintext highlighter-rouge">_site</code> directory,
+which can be deployed using the methods outlined in the <a href="https://jekyllrb.com/docs/deployment-methods/">Jekyll Documentation</a>.</p>
+
+<h2 id="github-pages">GitHub Pages</h2>
+
+<p class="note">As of September 2024, you can deploy to GitHub Pages using a custom GitHub Action. 
+You can read more about it in chapter <a href="/docs/deploy/" class="heading flip-title">Deploy</a>.</p>
+
+<p>If you’re using the Starter Kit based on the <code class="language-plaintext highlighter-rouge">gh-pages</code> branch, or the <code class="language-plaintext highlighter-rouge">starter-kit-gh-pages</code> folder from the <strong>PRO Version</strong>,
+all you have to do is push your repository:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add <span class="nb">.</span>
+<span class="nv">$ </span>git commit <span class="s2">"Update content"</span>
+<span class="nv">$ </span>git push origin gh-pages
+</code></pre></div></div>
+
+<p>Make sure <em>Source</em> is set to “Deploy from a branch” in the <em>Pages</em> section of the repository settings, 
+and that the branch you’ve pushed to matches the one selected in the dropdown:</p>
+
+<p class="border"><img src="/assets/img/docs/pipeline-gh-pages.png" alt="GitHub repository settings" /></p>
+
+<p class="figcaption">Ensure these settings are set to continue using the GitHub Pages legacy pipeline.</p>
+
+<p class="read-more">Continue with <a href="/docs/deploy/" class="heading flip-title">Deploy</a></p>
+
 
 </article>
 

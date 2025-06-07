@@ -1,0 +1,15 @@
+a {
+    text-decoration: true; 
+  }
+  
+  a::after {
+    content: none !important; /* 去掉所有链接伪元素 */
+  }
+  
+.social,
+.footer .social,
+.sidebar .social,
+.sidebar .social-icons,
+.sidebar .social-links {
+  display: none !important;
+}
