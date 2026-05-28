@@ -1,6 +1,36 @@
 a {
-    text-decoration: true; 
+    text-decoration: true;
   }
+
+/* ── Right photo sidebar (wide screens only) ── */
+.photo-sidebar {
+  display: none;
+}
+@media screen and (min-width: 104rem) {
+  .photo-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: fixed;
+    top: 6rem;
+    right: 1.5rem;
+    width: 17rem;
+  }
+  .photo-sidebar img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    background: #e8e8e8;
+  }
+  .photo-sidebar .photo-caption {
+    font-size: 0.72rem;
+    color: #999;
+    text-align: center;
+    margin-top: -4px;
+  }
+}
   
   a::after {
     content: none !important; /* 去掉所有链接伪元素 */
