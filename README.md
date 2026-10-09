@@ -6,7 +6,6 @@ Source files for [wikiahuang.github.io](https://wikiahuang.github.io/).
 
 - `index.html`: personal homepage and publication list
 - `assets/`: shared styles, scripts, icons, and images
-- `floverse/`: FloVerse project page
 - `research/`: research page
 - `AboutMe/`: about page
 - `future-goals/`: future goals page
