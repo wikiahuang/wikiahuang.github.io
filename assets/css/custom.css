@@ -14,22 +14,6 @@ a {
   display: none !important;
 }
 
-.research-interests {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem;
-  margin: 1.25rem 0 2rem;
-}
-
-.research-interests span {
-  padding: .3rem .75rem;
-  border: 1px solid var(--border-color);
-  border-radius: 999px;
-  color: var(--gray-text);
-  background: var(--gray-bg);
-  font-size: .85rem;
-}
-
 .news-list {
   list-style: none;
   padding-left: 0;
