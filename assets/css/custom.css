@@ -32,23 +32,6 @@ a {
   font-weight: 700;
 }
 
-.education-list {
-  display: grid;
-  gap: .75rem;
-  margin-bottom: 2rem;
-}
-
-.education-item {
-  display: flex;
-  flex-direction: column;
-  padding-left: 1rem;
-  border-left: 2px solid var(--border-color);
-}
-
-.education-item span {
-  color: var(--gray-text);
-}
-
 /* Consistent publication layout on the homepage. */
 .research-list {
   display: flex;
