@@ -14,6 +14,57 @@ a {
   display: none !important;
 }
 
+.research-interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.research-interests span {
+  padding: .3rem .75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  color: var(--gray-text);
+  background: var(--gray-bg);
+  font-size: .85rem;
+}
+
+.news-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 2rem;
+}
+
+.news-list li {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: .75rem;
+  margin-top: .4rem;
+}
+
+.news-list time {
+  color: var(--gray);
+  font-weight: 700;
+}
+
+.education-list {
+  display: grid;
+  gap: .75rem;
+  margin-bottom: 2rem;
+}
+
+.education-item {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  border-left: 2px solid var(--border-color);
+}
+
+.education-item span {
+  color: var(--gray-text);
+}
+
 /* Consistent publication layout on the homepage. */
 .research-list {
   display: flex;
@@ -33,6 +84,9 @@ a {
   min-width: 0;
   min-height: 0;
   overflow: hidden;
+  border: 0;
+  border-radius: .35rem;
+  background: var(--gray-bg);
 }
 
 .content .research-teaser img {
@@ -43,6 +97,12 @@ a {
   height: 100% !important;
   object-fit: contain;
   object-position: center;
+  transition: transform 250ms ease;
+}
+
+.research-teaser:hover img,
+.research-teaser:focus img {
+  transform: scale(1.025);
 }
 
 .research-info {
